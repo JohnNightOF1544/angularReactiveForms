@@ -1,0 +1,48 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+  <div class="container">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text"
+            class="form-control"
+            [ngClass]="{'is-invalid': loginForm.get('username')?.errors && loginForm.get('username')?.touched}"
+            id="username"
+            formControlName="username"
+            placeholder="Username">
+        <div *ngIf="loginUsername?.invalid && (loginUsername?.dirty || loginUsername?.touched)"
+          class="alert alert-danger">
+
+          <div *ngIf="loginUsername?.errors?.['required']">
+            Username is required.
+          </div>
+          <div *ngIf="loginUsername?.errors?.['minlength']">
+            Username is 7 characters long.
+          </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password"
+            class="form-control"
+            [ngClass]="{'is-invalid': loginForm.get('password')?.errors && loginForm.get('password')?.touched}"
+            id="password"
+            formControlName="password"
+            placeholder="Password">
+      <div *ngIf="loginPassword?.invalid && (loginPassword?.dirty || loginPassword?.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="loginPassword?.errors?.['required']">
+          Password is required.
+        </div>
+        <div *ngIf="loginPassword?.errors?.['minlength']">
+          Password is 8 characters long.
+        </div>
+      </div>
+    </div>
+    <button id="button" type="submit" class="btn btn-light" [disabled]="!loginForm.valid">Submit</button>
+  </div>
+
+</form>
+<p>Value: {{ loginForm.value| json}}</p>
+
+<p>Form Status: {{ loginForm.status }}</p>

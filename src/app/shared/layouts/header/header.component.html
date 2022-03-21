@@ -1,0 +1,66 @@
+<nav class="navbar sticky-top">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a
+        *ngIf="_authServ.checkToken()"
+        [routerLink]="['/home']"
+        routerLinkActive="router-link-active"
+        class="nav-link active"
+        aria-current="page"
+        href="#">
+        Active
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="!_authServ.checkToken()"
+        [routerLink]="['/login']"
+        routerLinkActive="router-link-active"
+        class="nav-link"
+        href="#">
+        Login
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="_authServ.checkToken()"
+        [routerLink]="['/home']"
+        routerLinkActive="router-link-active"
+        class="nav-link"
+        href="#">
+        Home
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="!_authServ.checkToken()"
+        [routerLink]="['/registration']"
+        routerLinkActive="router-link-active"
+        class="nav-link"
+        href="#">
+        Registration
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+      class="nav-link"
+      style="cursor:pointer"
+      *ngIf="_authServ.checkToken()"
+      (click)="_authServ.logout()"
+      [routerLink]="['/login']"
+      routerLinkActive="router-link-active">
+      Logout
+    </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link disabled">Disabled</a>
+    </li>
+
+  </ul>
+</nav>
+
+
+
+
